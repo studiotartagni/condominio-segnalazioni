@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizza Segnalazioni</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+    .segnalazione {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+    .segnalazione img {
+      border-radius: 5px;
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Segnalazioni</h1>
+  <div id="lista-segnalazioni"></div>
+
+  <script type="module">
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    function leggiSegnalazioni() {
+      const segnalazioniRef = ref(db, 'segnalazioni');
+      const container = document.getElementById("lista-segnalazioni");
+
+      onValue(segnalazioniRef, (snapshot) => {
+        const segnalazioni = snapshot.val();
+        container.innerHTML = "";
+
+        for (const id in segnalazioni) {
+          const segnalazione = segnalazioni[id];
+
+          // Determina l'immagine in base al tipo
+          let immagineUrl = "";
+          if (segnalazione.tipo === "danni strada") {
+            immagineUrl = "https://immagini.alvolante.it/sites/default/files/styles/anteprima_640/public/news_anteprima/2018/02/buca-buche-strada-adobestock_155140382.jpeg";
+          } else if (segnalazione.tipo === "tubi rotti") {
+            immagineUrl = "https://www.laleggepertutti.it/wp-content/uploads/2021/02/acqua-tubi-infiltrazine-autoclave.jpg";
+          } else if (segnalazione.tipo === "illuminazione pubblica") {
+            immagineUrl = "https://blog.topnetwork.it/hubfs/Illuminazione%20pubblica%20intelligente.jpg";
+          } else {
+            immagineUrl = "https://via.placeholder.com/150"; // Default
+          }
+
+          const item = `
+            <div class="segnalazione">
+              <img src="${immagineUrl}" alt="${segnalazione.tipo}">
+              <p><strong>Tipo:</strong> ${segnalazione.tipo || "N/A"}</p>
+              <p><strong>Descrizione:</strong> ${segnalazione.descrizione}</p>
+              <p><strong>Posizione:</strong> ${segnalazione.posizione}</p>
+            </div>
+          `;
+          container.innerHTML += item;
+        }
+      });
+    }
+
+    leggiSegnalazioni();
+  </script>
+</body>
+</html>
+

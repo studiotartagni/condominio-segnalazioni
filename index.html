@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segnalazioni Condominio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      text-align: center;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 10px 0;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .hamburger div {
+      width: 30px;
+      height: 4px;
+      background-color: #fff;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      margin: 0 10px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Menu responsive */
+    .menu {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      text-align: center;
+    }
+
+    .menu a {
+      display: block;
+      padding: 15px;
+      color: white;
+      font-size: 18px;
+    }
+
+    .menu a:hover {
+      background-color: #444;
+    }
+
+    /* Contenitore per le immagini */
+    .segnalazione-tipo-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .segnalazione-tipo {
+      text-align: center;
+      flex: 1 1 30%; /* Imposta la larghezza delle immagini al 30% */
+      max-width: 350px; /* Limita la larghezza massima delle immagini */
+    }
+
+    /* Immagini più grandi e piccole */
+    .segnalazione-tipo img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease; /* Aggiunge transizione per ingrandimento */
+    }
+    
+    /* Ingrandisce l'immagine al passaggio del mouse */
+    .segnalazione-tipo img:hover {
+      transform: scale(1.1);
+    }
+
+    .segnalazione-tipo h3 {
+      margin: 10px 0 5px;
+    }
+
+    /* Pulsante per inviare la segnalazione */
+    .btn-invia {
+      background-color: #333333; /* Colore #333 */
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+      display: inline-block;
+    }
+
+    .btn-invia:hover {
+      background-color: #222222; /* Colore più scuro al passaggio del mouse */
+    }
+
+    footer {
+      margin-top: 30px;
+      color: #666;
+      font-size: 14px;
+      padding: 10px 0;
+      background-color: #333;
+      color: white;
+    }
+
+    /* Responsive styles for hamburger menu */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu {
+        display: none;
+      }
+    }
+
+    .menu.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Benvenuto nel sistema di segnalazioni del condominio</h1>
+
+    <!-- Hamburger menu icon -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    
+    <!-- Navigation links for large screens -->
+    <div class="nav-links">
+      <a href="segnala.html">Segnala un problema</a>
+    </div>
+  </header>
+
+  <!-- Responsive menu -->
+  <div class="menu" id="menu">
+    <a href="index.html">Home</a>
+    <a href="segnala.html">Segnala un problema</a>
+  </div>
+
+  <section>
+    <h2>Cosa puoi segnalare nel condominio:</h2>
+    <div class="segnalazione-tipo-container">
+      <div class="segnalazione-tipo">
+        <img src="https://immagini.alvolante.it/sites/default/files/styles/anteprima_640/public/news_anteprima/2018/02/buca-buche-strada-adobestock_155140382.jpeg" alt="Danni in strada">
+        <h3>Danni in comune</h3>
+        <p>Segnala danni alle aree comuni del condominio, come buche, crepe o danni strutturali.</p>
+      </div>
+      <div class="segnalazione-tipo">
+        <img src="https://www.laleggepertutti.it/wp-content/uploads/2021/02/acqua-tubi-infiltrazine-autoclave.jpg" alt="Tubi rotti">
+        <h3>Tubi rotti</h3>
+        <p>Segnala perdite o danni alle tubature condominiali.</p>
+      </div>
+      <div class="segnalazione-tipo">
+        <img src="https://www.latinaoggi.eu/resizer/-1/-1/true/2024_06_28/enelx_illuminazione_pubblica_led_lampione-1719580078332.jpg--.jpg?1719580078000" alt="Illuminazione pubblica">
+        <h3>Illuminazione comune</h3>
+        <p>Avvisa di lampioni guasti o altre problematiche relative all'illuminazione nelle aree comuni.</p>
+      </div>
+      <div class="segnalazione-tipo">
+        <img src="https://termografiaitalia.com/wp-content/uploads/2024/03/infiltrazioni-dacqua-edifici-muffa-soffitto-300x191.webp" alt="Infiltrazioni d'acqua">
+        <h3>Infiltrazioni d'acqua</h3>
+        <p>Segnala infiltrazioni d'acqua o problemi di muffa nei soffitti e pareti comuni.</p>
+      </div>
+    </div>
+
+    <!-- Pulsante al centro sotto le immagini -->
+    <div>
+      <a href="segnala.html">
+        <button class="btn-invia">Invia Segnalazione</button>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer con informazioni -->
+  <footer>
+    <p>Indirizzo: Via Pietro Turchi, 24, 47521 Cesena FC</p>
+    <p>Telefono: 0547 27857</p>
+    <p>&copy; 2024 Studio Tartagni, Diritti Riservati</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

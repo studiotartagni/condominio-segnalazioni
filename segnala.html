@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segnala un problema</title>
+    <style>
+        /* Stili come li avevi prima */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        form {
+            margin: 20px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        input, textarea, select, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            display: none;
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #message img {
+            width: 100px;
+            height: auto;
+        }
+        #message h2 {
+            margin: 10px 0;
+        }
+        footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Segnala un problema nel condominio</h1>
+    </header>
+
+    <form action="invia_segnalazione.php" method="POST" enctype="multipart/form-data" onsubmit="mostraConferma(event)">
+        <label for="argomento">Scegli il tipo di problema:</label>
+        <select id="argomento" name="argomento" required>
+            <option value="infiltrazione">Infiltrazioni nelle aree comuni</option>
+            <option value="danni_comuni">Danni alle aree comuni</option>
+            <option value="tubi_rotti">Tubi rotti o perdite</option>
+            <option value="illuminazione">Problemi di illuminazione</option>
+            <option value="altro">Altro</option>
+        </select>
+
+        <label for="Nome e Cognome">Nome, cognome, recapito telefonico:</label>
+        <input type="text" id="indirizzo" name="indirizzo" placeholder="Inserisci nome, cognome e recapito telefonico" required>
+        
+        <label for="E-mail">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Inserisci la tua email" required>
+
+        <label for="Condominio">Nome del condominio:</label>
+        <input type="text" id="Condominio" name="Condominio" placeholder="Inserisci qui il nome del Condominio" required>
+       
+        <label for="posizione">Indirizzo del condominio:</label>
+        <input type="text" id="indirizzo" name="indirizzo" placeholder="Inserisci l'indirizzo del condominio" required>
+
+        <label for="foto">Carica una foto del problema (facoltativo):</label>
+        <input type="file" id="foto" name="foto" accept="image/*">
+
+        <label for="descrizione">Descrizione del problema:</label>
+        <textarea id="descrizione" name="descrizione" rows="4" placeholder="Descrivi il problema nel condominio..." required></textarea>
+
+        <button type="submit">Invia Segnalazione</button>
+    </form>
+
+    <div id="message">
+        <img src="https://static.vecteezy.com/system/resources/previews/008/506/390/non_2x/bright-green-tick-checkmark-icon-free-png.png" alt="Mockup personaggio">
+        <h2>Segnalazione inviata con successo!</h2>
+        <p>Grazie per averci aiutato a mantenere il condominio in ordine!</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Studio Tartagni, Diritti Riservati</p>
+    </footer>
+
+    <script>
+        function mostraConferma(event) {
+            event.preventDefault(); // Evita il ricaricamento della pagina
+            document.getElementById('message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
